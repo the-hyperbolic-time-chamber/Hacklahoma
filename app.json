@@ -23,7 +23,16 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.hacklahoma.gas",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.hacklahoma.gas",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyB5iyK4m85CrhjmXtdzgvwm8jljiY8RPEY"
+        }
+      }
     }
   }
 }
