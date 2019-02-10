@@ -9,7 +9,6 @@ import {
   View
 } from "react-native";
 import { WebBrowser, MapView } from "expo";
-
 import { MonoText } from "../components/StyledText";
 
 export default class HomeScreen extends React.Component {
@@ -17,6 +16,7 @@ export default class HomeScreen extends React.Component {
     header: null
   };
 
+  // input of destination
   render() {
     return (
       <View style={styles.container}>
