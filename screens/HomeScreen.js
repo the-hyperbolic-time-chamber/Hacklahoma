@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  Picker
 } from "react-native";
 import { WebBrowser, MapView } from "expo";
 import { MonoText } from "../components/StyledText";
@@ -16,6 +17,10 @@ export default class HomeScreen extends React.Component {
     header: null
   };
 
+  state = {
+    car: 'hummer',
+  }
+
   // input of destination
   render() {
     return (
@@ -24,12 +29,10 @@ export default class HomeScreen extends React.Component {
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
         >
+        <Text style={styles.tabBarInfoText}>ga$</Text>
           <View style={styles.welcomeContainer}>
             <Image
-              source={
-                __DEV__
-                  ? require("../assets/images/robot-dev.png")
-                  : require("../assets/images/robot-prod.png")
+              source={require("../assets/images/car.png")
               }
               style={styles.welcomeImage}
             />
@@ -38,54 +41,17 @@ export default class HomeScreen extends React.Component {
           <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
 
-            <Text style={styles.getStartedText}>Get started by opening </Text>
+            <Text style={styles.getStartedText}>Get started by changing the input tab</Text>
 
-            <View
-              style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-            >
-              <MonoText style={styles.codeHighlightText}>
-                screens/HomeScreen.js
-              </MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>Make changes here lol</Text>
-          </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity
-              onPress={this._handleHelpPress}
-              style={styles.helpLink}
-            >
-              <Text style={styles.helpLinkText}>
-                Help, it didn’t automatically reload!
-              </Text>
-            </TouchableOpacity>
+            <Picker
+          selectedValue={this.state.car}
+          onValueChange={car => this.setState({ car })}
+          style={{ width: 160 }}>
+          <Picker.Item label="Hummer H2" value="hummer" />
+          <Picker.Item label="Honda Civic" value="civic" />
+        </Picker>
           </View>
         </ScrollView>
-
-        <MapView
-          style={{ flex: 1 }}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-          }}
-        />
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>
-            This is a tab bar. You can edit it in:
-          </Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.navigationFilename]}
-          >
-            <MonoText style={styles.codeHighlightText}>
-              navigation/MainTabNavigator.js
-            </MonoText>
-          </View>
-        </View>
       </View>
     );
   }
@@ -195,7 +161,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20
   },
   tabBarInfoText: {
-    fontSize: 17,
+    fontSize: 30,
+    fontWeight: "bold",
     color: "rgba(96,100,109, 1)",
     textAlign: "center"
   },
